@@ -1,0 +1,5 @@
+---
+- name: Playbook para instalar NGINX
+  hosts: all
+  roles:
+    - roles/

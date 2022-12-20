@@ -1,0 +1,15 @@
+[nginx-estable]
+nombre = repositorio estable de nginx
+baseurl=http://nginx.org/packages/centos/$releasever/$basearch/
+gpcheck=1
+habilitado=1
+gpgkey=https://nginx.org/keys/nginx_signing.key
+módulo_hotfixes=verdadero
+
+[nginx-línea principal]
+nombre = repositorio principal de nginx
+baseurl=http://nginx.org/packages/mainline/centos/$releasever/$basearch/
+gpcheck=1
+habilitado=0
+gpgkey=https://nginx.org/keys/nginx_signing.key
+módulo_hotfixes=verdadero

@@ -1,0 +1,31 @@
+---
+- name: Install utils
+  yum:
+    name: yum-utils
+    state: present
+
+- name: Agregar repo nginx
+  file:
+    path: /etc/yum.repos.d/nginx.repo
+    state: touch
+    mode: "0755"
+
+- name: Cargar conf prometheus.yml 
+  template:
+    src: produccion/nginx.repo.j2
+    dest: /etc/yum.repos.d/nginx.repo
+    mode: "0755"
+
+- name: Install nginx
+  yum:
+    name: nginx
+    state: present
+
+- name: Daemon reload
+  systemd:
+    daemon_reload: yes
+
+- name:
+  systemd:
+    name: nginx
+    state: started
