@@ -10,22 +10,28 @@
     state: touch
     mode: "0755"
 
-- name: Cargar conf prometheus.yml 
+- name: Cargar contenido repo nginx
   template:
     src: produccion/nginx.repo.j2
     dest: /etc/yum.repos.d/nginx.repo
     mode: "0755"
 
 - name: Install nginx
-  yum:
+  package:
     name: nginx
     state: present
+
+- name: Agregar permiso de http a firewalld
+  firewalld:
+    service: http
+    permanent: yes
+    state: enabled
+
+- name: iniciar servicio nginx
+  systemd:
+    name: nginx
+    state: started
 
 - name: Daemon reload
   systemd:
     daemon_reload: yes
-
-- name:
-  systemd:
-    name: nginx
-    state: started
